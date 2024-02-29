@@ -4,7 +4,7 @@ import { cores } from '../../styles'
 export const Container = styled.div`
   padding-top: 56px;
   padding-bottom: 120px;
-  background-color: ${cores.rosaClaro};
+  background-color: ${cores.brancoFundo};
 `
 
 export const List = styled.ul`
