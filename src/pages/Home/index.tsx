@@ -22,7 +22,7 @@ export interface Food extends Cardapio {
 }
 
 const Home = () => {
-  const [menu, setMenu] = useState<Food>([])
+  const [menu, setMenu] = useState<Food[]>([])
 
   useEffect(() => {
     fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
