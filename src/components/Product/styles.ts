@@ -10,6 +10,10 @@ export const Card = styled.div`
   ${TagContainer} {
     margin-left: 8px;
   }
+  img:nth-child(2) {
+    width: 100%;
+    height: 217px;
+  }
 `
 
 export const Titulo = styled.h5`

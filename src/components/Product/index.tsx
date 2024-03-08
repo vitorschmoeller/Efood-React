@@ -4,21 +4,30 @@ import { Link } from 'react-router-dom'
 import star from '../../assets/estrela.png'
 
 export type Props = {
-  infos: string[]
+  infos: string
   image: string
   title: string
   review: string
   description: string
+  id: number
 }
 
-const Product = ({ description, image, infos, review, title }: Props) => {
+const Product = ({ description, image, infos, review, title, id }: Props) => {
+  const getDescricao = (description: string) => {
+    if (description.length > 272) {
+      return description.slice(0, 268) + '...'
+    }
+    return description
+  }
+
   return (
     <>
       <Card>
         <Infos>
-          {infos.map((info) => (
+          {/* {infos.map((info) => (
             <Tag key={info}>{info}</Tag>
-          ))}
+          ))} */}
+          <Tag>{infos}</Tag>
         </Infos>
         <img src={image} alt={title} />
         <ContainerText>
@@ -31,8 +40,8 @@ const Product = ({ description, image, infos, review, title }: Props) => {
           </Span>
         </ContainerText>
 
-        <P>{description}</P>
-        <Link to="/saibamais">
+        <P>{getDescricao(description)}</P>
+        <Link to={`/saibamais/${id}`}>
           <Button type="button">Saiba mais</Button>
         </Link>
       </Card>

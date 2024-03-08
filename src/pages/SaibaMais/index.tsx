@@ -1,57 +1,31 @@
+import { useParams } from 'react-router-dom'
 import BannerHeader from '../../components/BannerHeader'
 import ProductList2 from '../../components/ProductList2'
-import FoodSaiba from '../../models/FoodSaiba'
-import pizza from '../../assets/pizza.png'
-const comidas: FoodSaiba[] = [
-  {
-    id: 1,
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 1,
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 1,
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 1,
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 1,
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  },
-  {
-    id: 1,
-    image: pizza,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!'
-  }
-]
 
-const SaibaMais = () => (
-  <>
-    <BannerHeader />
-    <ProductList2 foods={comidas} />
-  </>
-)
+import { useEffect, useState } from 'react'
+import { Food } from '../Home'
+
+const SaibaMais = () => {
+  const { id } = useParams()
+
+  const [food, setFood] = useState<Food[]>([])
+
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((res) => setFood(res))
+  }, [id])
+
+  if (!food) {
+    return <h3>Carregando...</h3>
+  }
+
+  return (
+    <>
+      <BannerHeader />
+      <ProductList2 foods={food} />
+    </>
+  )
+}
 
 export default SaibaMais
