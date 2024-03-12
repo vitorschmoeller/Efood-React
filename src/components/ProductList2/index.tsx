@@ -20,6 +20,7 @@ const ProductList2 = ({ foods }: Props) => {
                   description={food.descricao}
                   image={food.foto}
                   title={food.nome}
+                  portion={food.porcao}
                 />
               </li>
             </>

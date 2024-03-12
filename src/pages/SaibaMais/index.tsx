@@ -7,23 +7,31 @@ import { Food } from '../Home'
 
 const SaibaMais = () => {
   const { id } = useParams()
-
-  const [food, setFood] = useState<Food[]>([])
+  const [cardapio, setCardapio] = useState([])
+  const [food, setFood] = useState<Food>()
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((res) => setCardapio(res.cardapio))
+  }, [id])
 
   useEffect(() => {
     fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
       .then((res) => res.json())
       .then((res) => setFood(res))
-  }, [id])
+  })
 
+  if (!cardapio) {
+    return <h3>Carregando...</h3>
+  }
   if (!food) {
     return <h3>Carregando...</h3>
   }
 
   return (
     <>
-      <BannerHeader />
-      <ProductList2 foods={food} />
+      <BannerHeader food={food} />
+      <ProductList2 foods={cardapio} />
     </>
   )
 }

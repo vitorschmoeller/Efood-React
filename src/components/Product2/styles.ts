@@ -30,6 +30,8 @@ export const P = styled.p`
 export const Img = styled.img`
   width: 100%;
   margin-bottom: 8px;
+  width: px;
+  height: 167px;
 `
 export const Modal = styled.div`
   display: none;

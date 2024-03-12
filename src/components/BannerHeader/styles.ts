@@ -30,6 +30,7 @@ export const Banner = styled.div`
   font-weight: bold;
   display: block;
   color: ${cores.branco};
+  position: relative;
 `
 export const Span = styled.span`
   margin-top: 30px;
@@ -47,4 +48,15 @@ export const BannerTitulo = styled.h3`
 `
 export const BannerContainer = styled.div`
   padding-top: 25px;
+  position: relative;
+  z-index: 1;
+`
+export const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.7;
 `
