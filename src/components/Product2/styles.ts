@@ -79,6 +79,7 @@ export const ModalContent = styled.div`
     max-width: 280px;
     height: 280px;
     margin-right: 24px;
+    object-fit: cover;
   }
 
   h4 {
