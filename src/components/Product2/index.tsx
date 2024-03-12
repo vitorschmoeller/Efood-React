@@ -44,7 +44,7 @@ const Product2 = ({ description, image, title, id, portion }: Props) => {
             <Button type={'button'}>Adicionar ao carrinho - R$ 60,90</Button>
           </div>
         </S.ModalContent>
-        <div className="overlay"></div>
+        <div className="overlay" onClick={() => setModal(false)}></div>
       </S.Modal>
     </>
   )

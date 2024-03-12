@@ -75,8 +75,9 @@ export const ModalContent = styled.div`
   }
 
   img:nth-child(2) {
+    width: 100%;
+    max-width: 280px;
     height: 280px;
-    width: 280px;
     margin-right: 24px;
   }
 
