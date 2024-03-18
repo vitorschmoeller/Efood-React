@@ -11,7 +11,7 @@ export const HeaderContainer = styled.div`
   align-items: center;
   font-weight: 900;
 `
-export const LinkCard = styled.a`
+export const CardButton = styled.a`
   text-decoration: none;
   color: ${cores.rosa};
 `

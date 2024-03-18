@@ -1,12 +1,11 @@
 import * as S from './styles'
 import Button from '../Button'
 import close from '../../assets/close1.png'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { add, open } from '../../store/reducers/cart'
-import Modal from '../Modal'
 import { Prato } from '../../pages/Home'
-import { RootReducer } from '../../store'
+
 export type Props = {
   image: string
   title: string
@@ -15,15 +14,12 @@ export type Props = {
   portion?: string
 }
 
-type Comida = {
+export type Comida = {
   comida: Prato
 }
-const Product2 = (
-  { description, image, title, id, portion }: Props,
-  { comida }: Comida
-) => {
+// export const Modal = ({ description, image, title, id, portion }: Props) => {
+export const Modal = ({ comida }: Comida) => {
   const [modal, setModal] = useState(false)
-  const [modalPreenchido, setPreencher] = useState()
 
   const dispatch = useDispatch()
   const getDescription = (descricao: string) => {
@@ -31,35 +27,21 @@ const Product2 = (
       return descricao.slice(0, 157) + '...'
     }
   }
-
   return (
     <>
-      <S.Card>
-        <S.Img src={image} alt="pizza" />
-        <S.Comida>{title}</S.Comida>
-        <S.P>{getDescription(description)}</S.P>
-        <Button
-          type="button"
-          onClick={() => {
-            setModal(true)
-          }}
-        >
-          Adicione ao carrinho
-        </Button>
-      </S.Card>
-      <S.Modal className={modal ? 'visible' : ''}>
+      <S.Modal className="visible">
         <S.ModalContent className="container">
           <img src={close} alt="fechar" onClick={() => setModal(false)} />
-          <img src={image} alt="pizza" />
+          <img src={comida.foto} alt="pizza" />
           <div>
-            <h4>{title}</h4>
+            <h4>{comida.nome}</h4>
             <p>
-              {description}
+              {comida.descricao}
               <br></br>
               <br />
-              {portion}
+              {comida.porcao}
             </p>
-            <Button type={'button'} onClick={() => dispatch(add(comida))}>
+            <Button type={'button'} onClick={() => dispatch(open())}>
               Adicionar ao carrinho - R$ 60,90
             </Button>
           </div>
@@ -70,4 +52,4 @@ const Product2 = (
   )
 }
 
-export default Product2
+export default Modal

@@ -1,7 +1,7 @@
 import {
   Header,
   HeaderContainer,
-  LinkCard,
+  CardButton,
   Img,
   Titulo,
   Banner,
@@ -16,12 +16,17 @@ import banner from '../../assets/bannerComida.png'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Food } from '../../pages/Home'
+import { useDispatch, useSelector } from 'react-redux'
+import { open } from '../../store/reducers/cart'
+import { RootReducer } from '../../store'
 
 type Props = {
   food: Food
 }
 
 const BannerHeader = ({ food }: Props) => {
+  const dispatch = useDispatch()
+  const { items } = useSelector((state: RootReducer) => state.cart)
   return (
     <>
       <Header style={{ backgroundImage: `url(${hero})` }}>
@@ -30,7 +35,9 @@ const BannerHeader = ({ food }: Props) => {
           <Link to={'/'}>
             <Img src={logo} alt="logo" />
           </Link>
-          <LinkCard href="#">0 produtos(s) no carrinho</LinkCard>
+          <CardButton onClick={() => dispatch(open())} href="#">
+            {items.length} produtos(s) no carrinho
+          </CardButton>
         </HeaderContainer>
       </Header>
       <Banner style={{ backgroundImage: `url(${food.capa})` }}>
