@@ -12,7 +12,7 @@ function App() {
         <GlobalCss />
         <Rotas />
         <Footer />
-        <Cart foods={[]} />
+        <Cart />
       </BrowserRouter>
     </Provider>
   )

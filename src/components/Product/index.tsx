@@ -41,7 +41,7 @@ const Product = ({ description, image, infos, review, title, id }: Props) => {
         </ContainerText>
 
         <P>{getDescricao(description)}</P>
-        <Link to={`/saibamais/${id}`}>
+        <Link to={`${id}`}>
           <Button type="button">Saiba mais</Button>
         </Link>
       </Card>

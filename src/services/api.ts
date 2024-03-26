@@ -1,6 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Food, Prato } from '../pages/Home'
 
+interface MenuResponse {
+  cardapio: Prato[]
+}
+
 const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://fake-api-tau.vercel.app/api/efood/restaurantes'
@@ -12,8 +16,8 @@ const api = createApi({
     getBannerRestaurant: builder.query<Food, string>({
       query: (id) => `/${id}`
     }),
-    getCardapio: builder.query<Prato[], string>({
-      query: (id) => `/saibamais/${id}`
+    getCardapio: builder.query<MenuResponse, string>({
+      query: (id) => `/${id}`
     })
   })
 })

@@ -33,7 +33,9 @@ export const Aside = styled.aside`
   background-color: ${cores.rosa};
   z-index: 1;
   padding-top: 32px;
-
+  button {
+    cursor: pointer;
+  }
   ${ButtonContainer} {
     width: 344px;
     margin-left: 8px;
