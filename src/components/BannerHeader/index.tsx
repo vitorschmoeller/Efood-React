@@ -1,24 +1,14 @@
-import {
-  Header,
-  HeaderContainer,
-  CardButton,
-  Img,
-  Titulo,
-  Banner,
-  BannerTitulo,
-  Span,
-  BannerContainer,
-  Overlay
-} from './styles'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
 import logo from '../../assets/logoEfood.png'
 import hero from '../../assets/fundo.png'
-import banner from '../../assets/bannerComida.png'
-import { Link } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { Food } from '../../pages/Home'
-import { useDispatch, useSelector } from 'react-redux'
-import { open } from '../../store/reducers/cart'
+
 import { RootReducer } from '../../store'
+
+import { open } from '../../store/reducers/cart'
+
+import * as S from './styles'
 
 type Props = {
   food: Food
@@ -29,24 +19,24 @@ const BannerHeader = ({ food }: Props) => {
   const { items } = useSelector((state: RootReducer) => state.cart)
   return (
     <>
-      <Header style={{ backgroundImage: `url(${hero})` }}>
-        <HeaderContainer className="container">
-          <Titulo>Restaurantes</Titulo>
+      <S.Header style={{ backgroundImage: `url(${hero})` }}>
+        <S.HeaderContainer className="container">
+          <S.Titulo>Restaurantes</S.Titulo>
           <Link to={'/'}>
-            <Img src={logo} alt="logo" />
+            <S.Img src={logo} alt="Clique aqui para voltar para home" />
           </Link>
-          <CardButton onClick={() => dispatch(open())} href="#">
-            {items.length} produtos(s) no carrinho
-          </CardButton>
-        </HeaderContainer>
-      </Header>
-      <Banner style={{ backgroundImage: `url(${food.capa})` }}>
-        <Overlay />
-        <BannerContainer className="container">
-          <Span>{food.tipo}</Span>
-          <BannerTitulo>{food.titulo}</BannerTitulo>
-        </BannerContainer>
-      </Banner>
+          <S.CardButton role="button" onClick={() => dispatch(open())}>
+            {items.length} produto(s) no carrinho
+          </S.CardButton>
+        </S.HeaderContainer>
+      </S.Header>
+      <S.Banner style={{ backgroundImage: `url(${food.capa})` }}>
+        <S.Overlay />
+        <S.BannerContainer className="container">
+          <S.Span>{food.tipo}</S.Span>
+          <S.BannerTitulo>{food.titulo}</S.BannerTitulo>
+        </S.BannerContainer>
+      </S.Banner>
     </>
   )
 }

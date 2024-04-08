@@ -1,25 +1,11 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 import { TagContainer } from '../Tag/styles'
-export const Card = styled.div`
-  width: 472px;
-  height: 398px;
-  border: solid 1px ${cores.rosa};
-  position: relative;
-  background-color: ${cores.branco};
-  ${TagContainer} {
-    margin-left: 8px;
-  }
-  img:nth-child(2) {
-    width: 100%;
-    height: 217px;
-  }
-`
-
 export const Titulo = styled.h5`
   font-size: 18px;
   font-weight: bold;
 `
+
 export const ContainerText = styled.div`
   display: flex;
   justify-content: space-between;
@@ -36,6 +22,9 @@ export const Span = styled.span`
 
   img {
     margin-left: 6px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
   }
 `
 export const P = styled.p`
@@ -55,10 +44,41 @@ export const Button = styled.button`
   border: none;
   margin-left: 8px;
   cursor: pointer;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-left: 0;
+  }
 `
 export const Infos = styled.div`
   position: absolute;
   top: 16px;
   right: 16px;
   display: flex;
+`
+
+export const Card = styled.div`
+  width: 472px;
+  height: 398px;
+  border: solid 1px ${cores.rosa};
+  position: relative;
+  background-color: ${cores.branco};
+  ${TagContainer} {
+    margin-left: 8px;
+  }
+  img:nth-child(2) {
+    width: 100%;
+    height: 217px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 300px;
+    height: 250px;
+
+    ${Titulo} {
+      font-size: 12px;
+    }
+    // ${Infos} {
+    //   display: none;
+    // }
+  }
 `

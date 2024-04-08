@@ -4,7 +4,8 @@ export const cores = {
   rosa: '#E66767',
   rosaClaro: '#FFEBD9',
   branco: '#fff',
-  brancoFundo: '#fff8f2'
+  brancoFundo: '#fff8f2',
+  black: '#4B4B4B'
 }
 export const breakpoints = {
   desktop: '1024px',
@@ -29,10 +30,11 @@ export const GlobalCss = createGlobalStyle`
 
     @media (max-width: ${breakpoints.desktop}) {
       max-width: 80%;
+
     }
 
     @media (max-width: ${breakpoints.tablet}){
-
+      max-width: 768px;
     }
   }
 `

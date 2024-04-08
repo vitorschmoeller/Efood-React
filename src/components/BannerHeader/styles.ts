@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { breakpoints, cores } from '../../styles'
 
 export const Header = styled.div`
   padding-top: 63px;
@@ -10,10 +10,19 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   font-weight: 900;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    flex-direction: column;
+
+    & > * {
+      margin-bottom: 6px;
+    }
+  }
 `
-export const CardButton = styled.a`
+export const CardButton = styled.span`
   text-decoration: none;
   color: ${cores.rosa};
+  cursor: pointer;
 `
 export const Titulo = styled.h3`
   font-size: 18px;

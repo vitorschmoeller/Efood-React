@@ -1,11 +1,12 @@
-import * as S from './styles'
-import Button from '../Button'
-import close from '../../assets/close1.png'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+
+import Button from '../Button'
+import close from '../../assets/close1.png'
+
 import { add, open } from '../../store/reducers/cart'
-import { Prato } from '../../pages/Home'
-import { RootReducer } from '../../store'
+
+import * as S from './styles'
 
 export type Props = {
   image: string
@@ -18,8 +19,17 @@ export type Props = {
 
 const Product2 = ({ description, image, title, id, portion, price }: Props) => {
   const [modal, setModal] = useState(false)
-
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768)
+    }
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const getDescription = (descricao: string) => {
     if (descricao.length > 160) {
@@ -51,14 +61,20 @@ const Product2 = ({ description, image, title, id, portion, price }: Props) => {
         <S.Img src={image} alt={title} />
         <S.Comida>{title}</S.Comida>
         <S.P>{getDescription(description)}</S.P>
-        <Button
-          type="button"
-          onClick={() => {
-            setModal(true)
-          }}
-        >
-          Adicione ao carrinho
-        </Button>
+        {isMobile ? (
+          <Button type={'button'} onClick={handleAddToCart}>
+            {buttonText}
+          </Button>
+        ) : (
+          <Button
+            type="button"
+            onClick={() => {
+              setModal(true)
+            }}
+          >
+            Adicione ao carrinho
+          </Button>
+        )}
       </S.Card>
       <S.Modal className={modal ? 'visible' : ''}>
         <S.ModalContent className="container">

@@ -1,16 +1,11 @@
-import { Container, List } from './styles'
 import Product2 from '../Product2'
-import * as S from './styles'
-import { useDispatch } from 'react-redux'
-import Modal from '../Modal'
-import { Prato } from '../../pages/Home'
+
+import { Container, List } from './styles'
 export type Props = {
   foods: Prato[]
 }
 
 const ProductList2 = ({ foods }: Props) => {
-  const dispatch = useDispatch()
-
   if (!foods) {
     return <h3>Carregando...</h3>
   }

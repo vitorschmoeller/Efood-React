@@ -1,7 +1,10 @@
-import { Card, Titulo, ContainerText, Span, Button, P, Infos } from './styles'
-import Tag from '../Tag'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+
+import Tag from '../Tag'
 import star from '../../assets/estrela.png'
+
+import * as S from './styles'
 
 export type Props = {
   infos: string
@@ -13,6 +16,17 @@ export type Props = {
 }
 
 const Product = ({ description, image, infos, review, title, id }: Props) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768)
+    }
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   const getDescricao = (description: string) => {
     if (description.length > 272) {
       return description.slice(0, 268) + '...'
@@ -22,29 +36,55 @@ const Product = ({ description, image, infos, review, title, id }: Props) => {
 
   return (
     <>
-      <Card>
-        <Infos>
-          {/* {infos.map((info) => (
+      <S.Card>
+        {isMobile ? (
+          <>
+            <S.Infos>
+              {/* {infos.map((info) => (
             <Tag key={info}>{info}</Tag>
           ))} */}
-          <Tag>{infos}</Tag>
-        </Infos>
-        <img src={image} alt={title} />
-        <ContainerText>
-          <Titulo>{title}</Titulo>
-          <Span>
-            {review}
-            <div>
-              <img src={star} alt="estrela" />
-            </div>
-          </Span>
-        </ContainerText>
+              <Tag>{infos}</Tag>
+            </S.Infos>
+            <img src={image} alt={title} />
+            <S.ContainerText>
+              <S.Span>
+                {review}
+                <div>
+                  <img src={star} alt="estrela" />
+                </div>
+                <S.Titulo>{title}</S.Titulo>
+              </S.Span>
+              <Link to={`${id}`}>
+                <S.Button type="button">Saiba mais</S.Button>
+              </Link>
+            </S.ContainerText>
+          </>
+        ) : (
+          <>
+            <S.Infos>
+              {/* {infos.map((info) => (
+            <Tag key={info}>{info}</Tag>
+          ))} */}
+              <Tag>{infos}</Tag>
+            </S.Infos>
+            <img src={image} alt={title} />
+            <S.ContainerText>
+              <S.Titulo>{title}</S.Titulo>
+              <S.Span>
+                {review}
+                <div>
+                  <img src={star} alt="estrela" />
+                </div>
+              </S.Span>
+            </S.ContainerText>
 
-        <P>{getDescricao(description)}</P>
-        <Link to={`${id}`}>
-          <Button type="button">Saiba mais</Button>
-        </Link>
-      </Card>
+            <S.P>{getDescricao(description)}</S.P>
+            <Link to={`${id}`}>
+              <S.Button type="button">Saiba mais</S.Button>
+            </Link>
+          </>
+        )}
+      </S.Card>
     </>
   )
 }

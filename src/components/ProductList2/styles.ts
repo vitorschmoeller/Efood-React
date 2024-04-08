@@ -6,6 +6,9 @@ export const Container = styled.div`
   padding-top: 56px;
   padding-bottom: 120px;
   background-color: ${cores.brancoFundo};
+
+  @media (max-width: ${breakpoints.tablet}) {
+  }
 `
 
 export const List = styled.ul`
@@ -19,6 +22,14 @@ export const List = styled.ul`
 
   @media (max-width: ${breakpoints.desktop}) {
     grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: ${breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+  li {
+    max-width: 100vw;
+    margin: 0 auto;
   }
 `
 

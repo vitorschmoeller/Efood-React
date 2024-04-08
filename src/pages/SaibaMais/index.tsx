@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+
 import BannerHeader from '../../components/BannerHeader'
 import ProductList2 from '../../components/ProductList2'
+
 import {
   useGetBannerRestaurantQuery,
   useGetCardapioQuery
 } from '../../services/api'
-import { Food, Prato } from '../Home'
-import Modal from '../../components/Modal'
 
 const SaibaMais = () => {
   const { id } = useParams()
